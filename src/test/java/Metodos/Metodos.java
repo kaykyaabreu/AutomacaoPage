@@ -21,18 +21,18 @@ public class Metodos {
 
 	public static WebDriver driver;
 
-	public void scremShoot (String print) throws IOException {
-		
-		TakesScreenshot scrShot = ((TakesScreenshot) driver);
-		File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-		File Desfile = new File(print);
-		FileUtils.copyFile(srcFile, Desfile);
+	public void screnShoot(String nome) throws IOException {
+
+        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+        File DestFile = new File("./src/evidencia/" + nome + ".png");
+        FileUtils.copyFile(SrcFile, DestFile);
 	}
 
-	public void pausa (int tempo, String descricaopasso) throws InterruptedException {
+	public void pausa (int string, String descricaopasso) throws InterruptedException {
 		//Thread.sleep(5000);
 		try {
-			Thread.sleep(tempo);
+			Thread.sleep(string);
 		} catch (NoSuchElementException e) {
 			Assert.fail(LocalDateTime.now() + "erro no passo" + descricaopasso);
 		}
@@ -44,7 +44,7 @@ public class Metodos {
 			driver.findElement(elemento).sendKeys(texto);
 		} catch (NoSuchElementException e) {
 			Assert.fail(LocalDateTime.now() + "erro no passo" + descricaopasso);
-			scremShoot(descricaopasso);
+			
 		}
 	}
 
@@ -53,7 +53,7 @@ public class Metodos {
 			driver.findElement(elemento).click();
 		} catch (NoSuchElementException e) {
 			Assert.fail(LocalDateTime.now() + "erro no passo" + descricaopasso);
-			scremShoot(descricaopasso);
+			
 		}
 	}
 	public void fecharnavegador(String descricaopasso) throws IOException {
@@ -61,12 +61,12 @@ public class Metodos {
 			driver.quit();
 		} catch (NoSuchElementException e) {
 			Assert.fail(LocalDateTime.now() + "erro no passo" + descricaopasso);
-			scremShoot(descricaopasso);
+			
 		}
 	}
 
 	public void executarnavegador(String url) {
-		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "./Driver1/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get(url);
 		driver.manage().window().maximize();
